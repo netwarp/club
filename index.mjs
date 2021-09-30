@@ -27,9 +27,5 @@ app.get('/login', (request, response) => {
     response.render('login.html')
 })
 
-
-
-
-
 // TODO .env
 app.listen(8080)
