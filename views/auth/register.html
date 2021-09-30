@@ -1,11 +1,78 @@
+{% extends "layouts/app.html" %}
+
+{% block content %}
+
+{% if errors %}
+    {% for error in errors %}
+        <div class="border border-red-500 mt-3">
+            {{ error }}
+        </div>
+    {% endfor %}
+{% endif %}
+
+{{ old|dump }}
+
 <h1>Register</h1>
+<form action="#" method="post" class=" p-3 m-3">
+    <div class="mt-3">
+        <input type="text" name="username" placeholder="username" value="{{ old[0].username }}">
+    </div>
 
-<form action="#" method="post">
-    <input type="text" name="name" placeholder="name">
+    <div class="mt-3">
+        <input type="email" name="email" placeholder="email" value="{{ old[0].email }}">
+    </div>
 
-    <input type="email" name="email" placeholder="email">
+    <div>
 
-    <input type="password" name="password" placeholder="password">
+        <select name="sex" class="mt-3">
+            <option value="" selected disabled>Vous êtes</option>
+            <option value="1" {{ 'selected' if old[0].sex == 1 }}>Homme</option>
+            <option value="0" {{ 'selected' if old[0].sex == 0 }}>Femme</option>
+        </select>
+    </div>
 
-    <button type="submit">Envoie</button>
+    <div class="">
+        <div>
+            Date de naissance
+        </div>
+        <div class="flex">
+            <div>
+                Jour
+                <select name="birth_day">
+                    {% for i in range(1, 31) %}
+                        <option value="{{ i }}">{{ i }}</option>
+                    {% endfor %}
+                </select>
+            </div>
+            <div>
+                Mois
+                <select name="birth_month">
+                    {% for i in range(1, 12) %}
+                    <option value="{{ i }}">{{ i }}</option>
+                    {% endfor %}
+                </select>
+            </div>
+            <div>
+                Année
+                <div>
+                    <input type="text" name="birth_year" value="{{ old[0].birth_year }}">
+                </div>
+            </div>
+        </div>
+    </div>
+
+    <div class="mt-3">
+        <input type="password" name="password" placeholder="password">
+    </div>
+
+    <div class="my-3">
+        <input type="password" name="password_confirm" placeholder="password">
+    </div>
+
+    <div class="mt-3">
+        <button type="submit">Envoie</button>
+    </div>
 </form>
+
+{% endblock %}
+
