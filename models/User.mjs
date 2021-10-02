@@ -41,6 +41,10 @@ const User = sequelize.define('User', {
         type: Sequelize.INTEGER,
         allowNull: false
     },
+    confirm_token: {
+        type: Sequelize.STRING,
+        allowNull: true
+    },
     createdAt: {type: Sequelize.DATE, field: 'created_at'},
     updatedAt: {type: Sequelize.DATE, field: 'updated_at'},
 }, {

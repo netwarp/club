@@ -41,6 +41,8 @@ app.get('/register', AuthController.register)
 
 app.post('/register', AuthController.postRegister)
 
+app.get('/confirm/:id/:confirm_token', AuthController.confirmToken)
+
 app.get('/login', (request, response) => {
     response.render('login.html')
 })

@@ -1,0 +1,52 @@
+<!doctype html>
+<html lang="fr">
+    <head>
+        <meta charset="UTF-8">
+        <meta name="viewport"
+              content="width=device-width, user-scalable=no, initial-scale=1.0, maximum-scale=1.0, minimum-scale=1.0">
+        <meta http-equiv="X-UA-Compatible" content="ie=edge">
+        <title>Document</title>
+        <style>
+            body {
+                margin: 0;
+                padding: 0;
+                font-family: Arial;
+                background: #C6C6C6FF;
+            }
+
+            #container {
+                background: #fff;
+                padding: 0;
+                margin: 1rem;
+                text-align: center;
+                padding: 0 0 10px 0;
+            }
+
+            #container #header {
+                background: #e188ea;
+                padding: 10px;
+            }
+
+            #container #button {
+                background: orange;
+                display: inline-block;
+                padding: 10px;
+                color: #fff;
+                text-decoration: none;
+            }
+
+        </style>
+    </head>
+    <body>
+        <div id="container">
+            <div id="header">
+                LOGO
+            </div>
+            <h1>Bonjour {{ username }}</h1>
+            <p>Bienvenue....</p>
+            <div>
+                <a href="{{ app_url }}/confirm/{{ id }}/{{ confirm_token }}" target="_blank" id="button">Confirmer</a>
+            </div>
+        </div>
+    </body>
+</html>

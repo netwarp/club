@@ -1,5 +1,10 @@
 import User from '../models/User.mjs'
 import bcrypt from 'bcrypt'
+import nodemailer from 'nodemailer'
+import nunjucks from 'nunjucks'
+import crypto from 'crypto'
+import dotenv from 'dotenv'
+dotenv.config()
 
 const AuthController = {
 
@@ -61,8 +66,9 @@ const AuthController = {
         }
 
         password = bcrypt.hashSync(password, 12)
+        const confirm_token = crypto.randomBytes(32).toString('hex')
 
-        User.create({
+        const user_data = {
             username,
             email,
             password,
@@ -70,9 +76,49 @@ const AuthController = {
             birth_day,
             birth_month,
             birth_year,
-        })
+            confirm_token
+        }
 
-        return response.json('traitement + envoie de mail')
+        const user = await User.create(user_data)
+
+        const email_data = {
+            username,
+            confirm_token,
+            id: user.id,
+            app_url: process.env.APP_URL
+        }
+
+        const email_html = nunjucks.render('email/validation.html', email_data)
+
+        const transporter_data = {
+            host: process.env.MAIL_HOST,
+            port: process.env.MAIL_PORT,
+            secure: false, // TODO env
+            auth: {
+                user: process.env.MAIL_USER,
+                pass: process.env.MAIL_PASS
+            }
+        }
+
+        let transporter = await nodemailer.createTransport(transporter_data)
+
+        let info = await transporter.sendMail({
+            from: 'toto@toto.com',
+            to: 'toto@toto.com',
+            subject: 'Bienvenue',
+            text: 'Bienvenue',
+            html: email_html
+        })
+        console.log("Message sent: %s", info.messageId)
+
+        console.log("Preview URL: %s", nodemailer.getTestMessageUrl(info));
+
+        request.flash('success', 'Please confirm')
+        return response.redirect('/')
+    },
+
+    async confirmToken(request, response) {
+        response.json('confirmed')
     }
 }
 
