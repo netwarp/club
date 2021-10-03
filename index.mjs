@@ -11,7 +11,8 @@ const sequelize = new Sequelize('club', 'postgres', 'root', {
     dialect: 'postgres'
 })
 
-import AuthController from './controllers/AuthController.mjs'
+import RegisterController from './controllers/Auth/RegisterController.mjs'
+import ConfirmController from "./controllers/Auth/ConfirmController.mjs";
 
 nunjucks.configure('views', {
     autoescape: true,
@@ -19,7 +20,7 @@ nunjucks.configure('views', {
     watch: true
 })
 
-app.use(express.static('public'));
+app.use(express.static('public'))
 app.use(bodyParser.json())
 app.use(bodyParser.urlencoded({
     extended: true
@@ -37,14 +38,14 @@ app.get('/', (request, response) => {
 })
 
 
-app.get('/register', AuthController.register)
+app.get('/register', RegisterController.index)
 
-app.post('/register', AuthController.postRegister)
+app.post('/register', RegisterController.postRegister)
 
-app.get('/confirm/:id/:confirm_token', AuthController.confirmToken)
+app.get('/confirm/:id/:confirm_token', ConfirmController.index)
 
 app.get('/login', (request, response) => {
-    response.render('login.html')
+    response.render('auth/login.html')
 })
 
 // TODO .env

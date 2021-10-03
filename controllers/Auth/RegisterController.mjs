@@ -1,15 +1,13 @@
-import User from '../models/User.mjs'
-import bcrypt from 'bcrypt'
-import nodemailer from 'nodemailer'
-import nunjucks from 'nunjucks'
-import crypto from 'crypto'
-import dotenv from 'dotenv'
-dotenv.config()
+// TODO SINGLE QUOTE
+import bcrypt from "bcrypt";
+import crypto from "crypto";
+import User from "../../models/User.mjs";
+import nunjucks from "nunjucks";
+import nodemailer from "nodemailer";
 
-const AuthController = {
+const RegisterController = {
 
-    async register(request, response) {
-
+    async index(request, response) {
         response.render('auth/register.html', {
             errors: request.flash('errors'),
             old: request.flash('old')
@@ -116,10 +114,6 @@ const AuthController = {
         request.flash('success', 'Please confirm')
         return response.redirect('/')
     },
-
-    async confirmToken(request, response) {
-        response.json('confirmed')
-    }
 }
 
-export default AuthController
+export default RegisterController
