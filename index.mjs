@@ -12,7 +12,9 @@ const sequelize = new Sequelize('club', 'postgres', 'root', {
 })
 
 import RegisterController from './controllers/Auth/RegisterController.mjs'
-import ConfirmController from "./controllers/Auth/ConfirmController.mjs";
+import ConfirmController from './controllers/Auth/ConfirmController.mjs'
+import LoginController from './controllers/Auth/LoginController.mjs'
+import ForgotPasswordController from './controllers/Auth/ForgotPasswordController.mjs'
 
 nunjucks.configure('views', {
     autoescape: true,
@@ -44,9 +46,14 @@ app.post('/register', RegisterController.postRegister)
 
 app.get('/confirm/:id/:confirm_token', ConfirmController.index)
 
-app.get('/login', (request, response) => {
-    response.render('auth/login.html')
-})
+app.get('/login', LoginController.index)
+app.post('/login', LoginController.postLogin)
+
+app.get('/forgot-password', ForgotPasswordController.index)
+app.post('/forgot-password', ForgotPasswordController.post)
+
+app.get('/reinitialize-password')
+app.post('/reinitialize-password')
 
 // TODO .env
 app.listen(8080)

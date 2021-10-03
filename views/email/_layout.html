@@ -1,11 +1,11 @@
 <!doctype html>
-<html lang="fr">
+<html lang="en">
     <head>
         <meta charset="UTF-8">
         <meta name="viewport"
               content="width=device-width, user-scalable=no, initial-scale=1.0, maximum-scale=1.0, minimum-scale=1.0">
         <meta http-equiv="X-UA-Compatible" content="ie=edge">
-        <title>Document</title>
+        <title>Club</title>
         <style>
             body {
                 margin: 0;
@@ -27,12 +27,22 @@
                 padding: 10px;
             }
 
+            #container #content {
+                margin-top: 10px;
+                padding-top: 5px;
+            }
+
             #container #button {
                 background: orange;
                 display: inline-block;
                 padding: 10px;
                 color: #fff;
                 text-decoration: none;
+            }
+
+            #footer {
+                font-size: 12px;
+                padding-top: 10px;
             }
         </style>
     </head>
@@ -41,10 +51,12 @@
             <div id="header">
                 LOGO
             </div>
-            <h1>Bonjour {{ username }}</h1>
-            <p>Bienvenue....</p>
-            <div>
-                <a href="{{ app_url }}/confirm/{{ id }}/{{ confirm_token }}" target="_blank" id="button">Confirmer</a>
+            <div id="content">
+                {% block content %}
+                {% endblock %}
+            </div>
+            <div id="footer">
+                Lorem ipsum dolor sit amet, consectetur adipisicing elit. A accusantium animi assumenda deleniti dolores ea eaque eius error expedita explicabo facere nemo nesciunt pariatur, quasi rerum, sed tempore! Corporis, perspiciatis.
             </div>
         </div>
     </body>
