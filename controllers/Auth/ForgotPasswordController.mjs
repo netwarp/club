@@ -1,8 +1,11 @@
 import User from '../../models/User.mjs'
+import PasswordReset from '../../models/PasswordReset.mjs'
 import nunjucks from "nunjucks";
 import nodemailer from 'nodemailer'
+import crypto from 'crypto'
 
 const ForgotPasswordController = {
+
     async index(request, response) {
 
         const data = {
@@ -36,10 +39,16 @@ const ForgotPasswordController = {
             return response.redirect('/forgot-password')
         }
 
+        const password_reset_data = {
+            email,
+            token: crypto.randomBytes(32).toString('hex')
+        }
+        const password_reset = await PasswordReset.create(password_reset_data)
+
         const email_data = {
             username: user.username,
-            id: user.id,
-            app_url: process.env.APP_URL
+            app_url: process.env.APP_URL,
+            token: password_reset.token
         }
 
         const email_html = nunjucks.render('email/forgot-password.html', email_data)
@@ -58,7 +67,7 @@ const ForgotPasswordController = {
 
         let info = await transporter.sendMail({
             from: 'toto@toto.com',
-            to: 'toto@toto.com',
+            to: email,
             subject: 'Forgot password',
             text: 'Forgot password',
             html: email_html

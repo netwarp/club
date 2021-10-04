@@ -15,6 +15,7 @@ import RegisterController from './controllers/Auth/RegisterController.mjs'
 import ConfirmController from './controllers/Auth/ConfirmController.mjs'
 import LoginController from './controllers/Auth/LoginController.mjs'
 import ForgotPasswordController from './controllers/Auth/ForgotPasswordController.mjs'
+import ReinitializePasswordController from './controllers/Auth/ReinitializePasswordController.mjs'
 
 nunjucks.configure('views', {
     autoescape: true,
@@ -52,8 +53,8 @@ app.post('/login', LoginController.postLogin)
 app.get('/forgot-password', ForgotPasswordController.index)
 app.post('/forgot-password', ForgotPasswordController.post)
 
-app.get('/reinitialize-password')
-app.post('/reinitialize-password')
+app.get('/reinitialize-password/:token', ReinitializePasswordController.index)
+app.post('/reinitialize-password/:token', ReinitializePasswordController.post)
 
 // TODO .env
 app.listen(8080)
