@@ -28,7 +28,6 @@ const ReinitializePasswordController = {
         const password = request.body.password
         const password_confirm = request.body.password_confirm
 
-
         const password_reset = await PasswordReset.findOne({
             where: {
                 token

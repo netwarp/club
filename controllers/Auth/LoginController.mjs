@@ -3,6 +3,7 @@ import bcrypt from 'bcrypt'
 
 const LoginController = {
     async index(request, response) {
+        console.log(request.session.flash)
         return response.render('auth/login.html')
     },
 
@@ -15,8 +16,6 @@ const LoginController = {
                 username: login
             },
         })
-
-
 
     }
 }
