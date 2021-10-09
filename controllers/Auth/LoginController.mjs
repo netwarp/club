@@ -3,8 +3,12 @@ import bcrypt from 'bcrypt'
 
 const LoginController = {
     async index(request, response) {
-        console.log(request.session.flash)
-        return response.render('auth/login.html')
+
+        const data = {
+            error: request.session.flash
+        }
+
+        return response.render('auth/login.html', data)
     },
 
     async postLogin(request, response) {

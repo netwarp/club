@@ -5,11 +5,11 @@ import ConfirmController from '../controllers/Auth/ConfirmController.mjs'
 import LoginController from '../controllers/Auth/LoginController.mjs'
 import ForgotPasswordController from '../controllers/Auth/ForgotPasswordController.mjs'
 import ReinitializePasswordController from '../controllers/Auth/ReinitializePasswordController.mjs'
+import FrontController from '../controllers/FrontController.mjs'
+
 import passport from "passport";
 
-router.get('/', (request, response) => {
-    response.json('index')
-})
+router.get('/', FrontController.index)
 
 router.get('/register', RegisterController.index)
 router.post('/register', RegisterController.postRegister)
@@ -20,7 +20,7 @@ router.get('/login', LoginController.index)
 router.post('/login',
     passport.authenticate('local', { successRedirect: '/',
         failureRedirect: '/login',
-        failureFlash: true
+        failureFlash: true // TODO flash one time
     })
 )
 

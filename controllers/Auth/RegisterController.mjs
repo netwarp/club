@@ -8,6 +8,8 @@ import nodemailer from "nodemailer";
 const RegisterController = {
 
     async index(request, response) {
+
+        // TODO data object
         response.render('auth/register.html', {
             errors: request.flash('errors'),
             old: request.flash('old')
@@ -112,7 +114,7 @@ const RegisterController = {
         console.log("Preview URL: %s", nodemailer.getTestMessageUrl(info));
 
         request.flash('success', 'Please confirm')
-        return response.redirect('/')
+        return response.redirect('/login')
     },
 }
 

@@ -25,7 +25,7 @@ const ConfirmController = {
         if ( user.confirm_token === confirm_token) {
             user.confirm_token = ''
             user.save()
-            request.flash('success', 'Enregistrement confirmé')
+            request.flash('success', 'Enregistrement confirmé') // TODO MESSAGE FLASH DISPLAY
             return await response.redirect('/login')
         }
     }
