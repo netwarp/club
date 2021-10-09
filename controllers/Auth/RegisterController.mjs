@@ -1,19 +1,19 @@
-// TODO SINGLE QUOTE
-import bcrypt from "bcrypt";
-import crypto from "crypto";
-import User from "../../models/User.mjs";
-import nunjucks from "nunjucks";
-import nodemailer from "nodemailer";
+import bcrypt from 'bcrypt'
+import crypto from 'crypto'
+import User from '../../models/User.mjs'
+import nunjucks from 'nunjucks'
+import nodemailer from 'nodemailer'
 
 const RegisterController = {
 
     async index(request, response) {
 
-        // TODO data object
-        response.render('auth/register.html', {
+        const data = {
             errors: request.flash('errors'),
             old: request.flash('old')
-        })
+        }
+
+        response.render('auth/register.html', data)
     },
 
     async postRegister(request, response) {
@@ -50,13 +50,21 @@ const RegisterController = {
         if ( ! birth_year) {
             errors.push('Année requise')
         }
-        // TODO PASSWORD 8 chars
+
         if ( ! password) {
             errors.push('Mot de passe requis')
         }
 
         if ( ! password_confirm) {
             errors.push('Confirmation requise')
+        }
+
+        if (password.length < 10) {
+            errors.push('Le mot de passe doit avoir plus de 10 caractères')
+        }
+
+        if (password !== password_confirm) {
+            errors.push('Les mots de passe ne sont pas identiques')
         }
 
         if (errors.length) {
@@ -114,6 +122,7 @@ const RegisterController = {
         console.log("Preview URL: %s", nodemailer.getTestMessageUrl(info));
 
         request.flash('success', 'Please confirm')
+
         return response.redirect('/login')
     },
 }
