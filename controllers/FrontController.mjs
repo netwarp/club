@@ -1,6 +1,13 @@
 const FrontController = {
     async index(request, response) {
-        return response.render('index.html')
+
+        const data = {
+            auth: request.user
+        }
+        console.log('---- --- -')
+        console.log(data)
+
+        return response.render('index.html', data)
     },
 
 
