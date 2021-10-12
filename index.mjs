@@ -42,12 +42,13 @@ app.use(passport.session())
 
 passport.serializeUser(async (user, done) => {
     const u = await User.findByPk(user.id)
-    await console.log(user)
     await done(null, user)
 })
 passport.deserializeUser((user, done) =>  done(null, user) )
 
 import router from './routes/web.mjs'
+import router_api from './routes/api.mjs'
 app.use('/', router)
+app.use('/api', router_api)
 
 app.listen(process.env.APP_PORT)

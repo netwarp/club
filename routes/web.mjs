@@ -6,8 +6,16 @@ import LoginController from '../controllers/Auth/LoginController.mjs'
 import ForgotPasswordController from '../controllers/Auth/ForgotPasswordController.mjs'
 import ReinitializePasswordController from '../controllers/Auth/ReinitializePasswordController.mjs'
 import FrontController from '../controllers/FrontController.mjs'
+import multer from 'multer'
 
 import passport from "passport";
+import NotificationsController from "../controllers/App/NotificationsController.mjs";
+import ensureAuthenticated from "../middleware/ensureAuthenticated.mjs";
+import ProfileController from "../controllers/App/ProfileController.mjs";
+import AccountController from "../controllers/App/AccountController.mjs";
+
+
+const upload = multer()
 
 router.get('/', FrontController.index)
 
@@ -24,6 +32,11 @@ router.post('/login',
     })
 )
 
+router.get('/logout', (request, response) => {
+    request.logout()
+    response.redirect('/')
+})
+
 router.get('/forgot-password', ForgotPasswordController.index)
 router.post('/forgot-password', ForgotPasswordController.post)
 
@@ -35,5 +48,15 @@ router.get('/logout', (request, response) => {
     response.redirect('/')
 })
 
+// TODO router app
+router.get('/notifications', ensureAuthenticated, NotificationsController.index)
+
+router.get('/compte', ensureAuthenticated, AccountController.index)
+router.post('/compte', ensureAuthenticated, upload.single('avatar'), AccountController.post)
+
+router.get('/:username', ensureAuthenticated, ProfileController.index)
+
+
+router.get('*', (request, response) => response.redirect('/'))
 
 export default router

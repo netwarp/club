@@ -29,6 +29,14 @@ const User = sequelize.define('User', {
         type: Sequelize.INTEGER,
         allowNull: false
     },
+    bio: {
+        type: Sequelize.STRING,
+        allowNull: true
+    },
+    avatar: {
+        type: Sequelize.STRING,
+        allowNull: true
+    },
     birth_day: {
         type: Sequelize.INTEGER,
         allowNull: false
