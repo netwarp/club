@@ -1,8 +1,5 @@
 import User from '../../models/User.mjs'
 import bcrypt from 'bcrypt'
-import {Buffer} from 'buffer'
-import fs from 'fs'
-import * as buffer from "buffer";
 
 const AccountController = {
     async index(request, response) {
@@ -41,16 +38,10 @@ const AccountController = {
             user.password = bcrypt.hashSync(password)
         }
 
-        if (avatar) {
-            // TODO CHECK SIZE AND MIMETYPE
-            let file = request.file
-            file = file.buffer.data
-            file = Buffer.from(file)
 
-            fs.writeFile('storage/test.jpg', file)
-        }
 
-        //return response.json(request.file)
+        request.flash('success', 'Compte édité avec succès')
+        return response.redirect('/compte')
     }
 }
 

@@ -13,9 +13,30 @@ import NotificationsController from "../controllers/App/NotificationsController.
 import ensureAuthenticated from "../middleware/ensureAuthenticated.mjs";
 import ProfileController from "../controllers/App/ProfileController.mjs";
 import AccountController from "../controllers/App/AccountController.mjs";
+import ImagesController from '../controllers/App/ImagesController.mjs'
 
+import User from '../models/User.mjs'
+const storage = multer.diskStorage({
+    destination: function (req, file, cb) {
+        cb(null, PATH.storage + '/app/avatars')
+    },
+    filename: async function (request, file, cb) {
 
-const upload = multer()
+        // TOTO script init mkdir app/avatars
+        const uniqueSuffix = Date.now() + '-' + Math.round(Math.random() * 1E9)
+
+        let user = await request.user
+        user = await User.findByPk(user.id)
+        user.avatar = uniqueSuffix + '.jpg'
+        user.save()
+
+        cb(null, uniqueSuffix + '.jpg')
+
+    }
+})
+
+const upload = multer({ storage: storage })
+
 
 router.get('/', FrontController.index)
 
@@ -54,7 +75,10 @@ router.get('/notifications', ensureAuthenticated, NotificationsController.index)
 router.get('/compte', ensureAuthenticated, AccountController.index)
 router.post('/compte', ensureAuthenticated, upload.single('avatar'), AccountController.post)
 
+
+router.get('/avatars/:src', ImagesController.index)
 router.get('/:username', ensureAuthenticated, ProfileController.index)
+
 
 
 router.get('*', (request, response) => response.redirect('/'))

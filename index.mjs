@@ -46,6 +46,17 @@ passport.serializeUser(async (user, done) => {
 })
 passport.deserializeUser((user, done) =>  done(null, user) )
 
+// TODO clean this shit
+import { dirname } from 'path';
+import { fileURLToPath } from 'url';
+
+const __dirname = dirname(fileURLToPath(import.meta.url));
+global.PATH = {
+    base: __dirname,
+    storage: __dirname + '/storage'
+}
+
+
 import router from './routes/web.mjs'
 import router_api from './routes/api.mjs'
 app.use('/', router)
