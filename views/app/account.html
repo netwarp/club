@@ -1,0 +1,44 @@
+{% extends "layouts/app.html" %}
+
+{% block content %}
+
+<div class="container items-center px-5 py-5">
+    <form method="post" action="#" enctype="multipart/form-data" class="flex flex-col w-full p-10 px-8 pt-6 mx-auto mb-4 transition duration-500 ease-in-out transform bg-gray-100 border rounded-lg">
+        <section class="flex flex-col w-full h-full p-1 overflow-auto">
+
+            <div>
+                {% if auth.avatar %}
+                    Avatar
+                {% else %}
+                    Pas d'avatar
+                {% endif %}
+            </div>
+
+            <header class="flex flex-col items-center justify-center py-12 text-base text-blueGray-500 transition duration-500 ease-in-out transform bg-white border border-dashed rounded-lg focus:border-blue-500 focus:outline-none focus:shadow-outline focus:ring-2 ring-offset-current ring-offset-2">
+                <input type="file" name="avatar" class="w-auto px-2 py-1 my-2 mr-2 text-blueGray-500 transition duration-500 ease-in-out transform border rounded-md hover:text-blueGray-600 text-md focus:shadow-outline focus:outline-none focus:ring-2 ring-offset-current ring-offset-2 hover:bg-blueGray-100">
+            </header>
+
+        </section>
+        <div class="relative pt-4">
+            <label for="username" class="text-base leading-7 text-blueGray-500">Nom</label>
+            <input type="text" id="username" name="username" value="{{ auth.username }}" class="w-full bg-white rounded border border-gray-300 focus:border-indigo-500 focus:ring-2 focus:ring-indigo-200 text-base outline-none text-gray-700 py-1 px-3 leading-8 transition-colors duration-200 ease-in-out">
+        </div>
+        <div class="relative pt-4">
+            <label for="email" class="text-base leading-7 text-blueGray-500">Email</label>
+            <input type="email" id="email" name="email" value="{{ auth.email }}" class="w-full bg-white rounded border border-gray-300 focus:border-indigo-500 focus:ring-2 focus:ring-indigo-200 text-base outline-none text-gray-700 py-1 px-3 leading-8 transition-colors duration-200 ease-in-out">
+        </div>
+        <div class="relative pt-4">
+            <label for="bio" class="text-base leading-7 text-blueGray-500">Bio</label>
+            <input type=text" id="bio" name="bio" value="{{ auth.bio }}" class="w-full bg-white rounded border border-gray-300 focus:border-indigo-500 focus:ring-2 focus:ring-indigo-200 text-base outline-none text-gray-700 py-1 px-3 leading-8 transition-colors duration-200 ease-in-out">
+        </div>
+        <div class="relative pt-4">
+            <label for="password" class="text-base leading-7 text-blueGray-500">Mot de passe</label>
+            <input type="password" id="password" name="password" class="w-full bg-white rounded border border-gray-300 focus:border-indigo-500 focus:ring-2 focus:ring-indigo-200 text-base outline-none text-gray-700 py-1 px-3 leading-8 transition-colors duration-200 ease-in-out">
+        </div>
+        <div class="relative pt-4">
+            <button type="submit" class="text-white bg-blue-500 border-0 py-2 px-8 focus:outline-none hover:bg-blue-600 rounded text-lg">Envoie</button>
+        </div>
+    </form>
+</div>
+
+{% endblock %}

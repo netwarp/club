@@ -1,0 +1,37 @@
+{% extends "layouts/app.html" %}
+
+{% block content %}
+<div class="container items-center px-5 py-5">
+    <div class="flex flex-wrap">
+        <div class="bg-white border rounded-lg shadow-xl w-3/4 text-center">
+            <div class="p-6">
+                <div class="text-center">
+                    <img src="https://picsum.photos/300/200" alt="" class="mx-auto">
+                </div>
+                <h4 class="mb-8 text-2xl font-semibold leading-none tracking-tighter text-black lg:text-3xl title-font ">{{ user.username }}</h4>
+                <p class="mb-3 text-base leading-relaxed text-blueGray-500"> If any Environment Variables values are changed between Deployments, deduplication will always be bypassed. </p>
+                <p></p>
+                <div class="flex flex-wrap justify-between">
+                    <a href="#" class="text-sm font-semibold text-blue-600 uppercase hover:text-black" title="read more"> Message </a>
+                    <a href="#" class="mx-4 ml-auto text-red-600 hover:text-black" title="like">
+                        <svg xmlns="http://www.w3.org/2000/svg" class="icon icon-tabler icon-tabler-heart" width="24" height="24" viewBox="0 0 24 24" stroke-width="1.5" stroke="currentColor" fill="none" stroke-linecap="round" stroke-linejoin="round">
+                            <path stroke="none" d="M0 0h24v24H0z" fill="none"></path>
+                            <path d="M19.5 13.572l-7.5 7.428l-7.5 -7.428m0 0a5 5 0 1 1 7.5 -6.566a5 5 0 1 1 7.5 6.572"></path>
+                        </svg>
+                    </a>
+                    <a href="#" class="text-sm font-semibold text-blue-600 uppercase hover:text-black" title="share">
+                        <svg xmlns="http://www.w3.org/2000/svg" class="icon icon-tabler icon-tabler-share" width="24" height="24" viewBox="0 0 24 24" stroke-width="1.5" stroke="currentColor" fill="none" stroke-linecap="round" stroke-linejoin="round">
+                            <path stroke="none" d="M0 0h24v24H0z" fill="none"></path>
+                            <circle cx="6" cy="12" r="3"></circle>
+                            <circle cx="18" cy="6" r="3"></circle>
+                            <circle cx="18" cy="18" r="3"></circle>
+                            <line x1="8.7" y1="10.7" x2="15.3" y2="7.3"></line>
+                            <line x1="8.7" y1="13.3" x2="15.3" y2="16.7"></line>
+                        </svg>
+                    </a>
+                </div>
+            </div>
+        </div>
+    </div>
+</div>
+{% endblock %}
