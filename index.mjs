@@ -5,6 +5,8 @@ import bodyParser from "body-parser";
 import nunjucks from 'nunjucks'
 const app = express()
 import passport from 'passport'
+import redis from 'redis'
+import connectRedis from 'connect-redis'
 
 import cookieParser from 'cookie-parser'
 
@@ -18,6 +20,16 @@ nunjucks.configure('views', {
     express: app,
     watch: true
 })
+
+const RedisStore = connectRedis(session)
+const redisClient = redis.createClient({
+    host: 'localhost',
+    port: 6379
+})
+
+redisClient.on('connect', function (err) {
+    console.log('Connected to redis successfully');
+});
 
 import LocalStrategy from './middleware/LocalStrategy.mjs'
 passport.use(LocalStrategy)
@@ -33,7 +45,13 @@ app.use(session({
     secret: process.env.APP_SESSION,
     proxy: true,
     resave: true,
-    saveUninitialized: true
+    saveUninitialized: true,
+    store: new RedisStore({ client: redisClient }),
+    cookie: {
+        secure: false, // if true only transmit cookie over https
+        httpOnly: false, // if true prevent client side JS from reading the cookie
+        maxAge: 1000 * 60 * 10 // session max age in miliseconds
+    }
 }))
 app.use(flash())
 

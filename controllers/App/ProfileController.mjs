@@ -19,7 +19,7 @@ const ProfileController = {
     },
 
     async post(request, response) {
-        
+
     }
 }
 
