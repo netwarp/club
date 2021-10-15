@@ -25,21 +25,14 @@
             {% endfor %}
         </div>
         <div class="flex-1">
-            <div class="border border-gray-200 bg-white p-2 rounded-lg mb-4">
-                <div class="chat-space flex-col">
-                    <div class="message you bg-blue-100 p-2 mb-3 rounded-lg">
-                        Lorem ipsum dolor sit amet, consectetur adipisicing elit. Alias consectetur culpa, deserunt enim exercitationem mollitia neque nisi nulla obcaecati omnis pariatur perferendis placeat praesentium ratione sequi! Minima odit provident similique.
-                    </div>
-                    <div class="message me bg-red-100 p-2 mb-3 text-right rounded-lg">
-                        Lorem ipsum dolor sit amet, consectetur adipisicing elit. Animi dolores dolorum explicabo fuga harum illum impedit iste, iure magni molestias nemo neque odio officia perferendis recusandae sint veritatis voluptas voluptates.
-                    </div>
-                </div>
 
-                <form id="chat-form">
-                    <input type="text" class="border-2 border-gray-400 w-full p-1">
-                </form>
-            </div>
+
+            <div id="chat"></div>
         </div>
     </div>
 
+{% endblock %}
+
+{% block js%}
+    <script src="/js/chat.js"></script>
 {% endblock %}

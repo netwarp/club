@@ -12,7 +12,11 @@
                 <p class="mb-3 text-base leading-relaxed text-blueGray-500">{{ user.bio or 'lorem ipsum ...' }}</p>
 
                 <div class="flex flex-wrap justify-between">
-                    <a href="#" class="text-sm font-semibold text-blue-600 uppercase hover:text-black" title="read more"> Message </a>
+
+                    <form action="#" method="post">
+                        <button type="submit" class="text-sm font-semibold text-blue-600 uppercase hover:text-black">Message</button>
+                    </form>
+
                     <a href="#" class="mx-4 ml-auto text-red-600 hover:text-black" title="like">
                         <svg xmlns="http://www.w3.org/2000/svg" class="icon icon-tabler icon-tabler-heart" width="24" height="24" viewBox="0 0 24 24" stroke-width="1.5" stroke="currentColor" fill="none" stroke-linecap="round" stroke-linejoin="round">
                             <path stroke="none" d="M0 0h24v24H0z" fill="none"></path>

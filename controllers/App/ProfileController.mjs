@@ -16,6 +16,10 @@ const ProfileController = {
         }
 
         return response.render('app/profile.html', data)
+    },
+
+    async post(request, response) {
+        
     }
 }
 
