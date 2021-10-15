@@ -1,5 +1,16 @@
 import User from '../models/User.mjs'
 
+
+import dotenv from 'dotenv'
+dotenv.config()
+
+import Sequelize from "sequelize";
+const sequelize = new Sequelize(process.env.DB_DATABASE, process.env.DB_USERNAME, process.env.DB_PASSWORD, {
+    host: 'localhost',
+    dialect: 'postgres'
+})
+import QueryTypes from "sequelize";
+
 const FrontController = {
     async index(request, response) {
         const data = {
@@ -16,8 +27,13 @@ const FrontController = {
             data.auth.hasOwnProperty('password') &&
             data.auth.hasOwnProperty('createdAt')
         ) {
+            const user_id = request.user.id
+            console.log(`user id : ${user_id}`)
 
-            const users = await User.findAll()
+            let users = await sequelize.query(`SELECT id, username, email, avatar, sex, bio FROM users WHERE ID <> ${user_id};`, { type: QueryTypes.SELECT });
+            users = users[0]
+
+
             const data = {
                 users,
                 auth: request.user

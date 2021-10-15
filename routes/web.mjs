@@ -16,6 +16,7 @@ import AccountController from "../controllers/App/AccountController.mjs";
 import ImagesController from '../controllers/App/ImagesController.mjs'
 
 import User from '../models/User.mjs'
+import ChatsController from "../controllers/App/ChatsController.mjs";
 const storage = multer.diskStorage({
     destination: function (req, file, cb) {
         cb(null, PATH.storage + '/app/avatars')
@@ -75,12 +76,13 @@ router.get('/notifications', ensureAuthenticated, NotificationsController.index)
 router.get('/compte', ensureAuthenticated, AccountController.index)
 router.post('/compte', ensureAuthenticated, upload.single('avatar'), AccountController.post)
 
+router.get('/chat', ensureAuthenticated, ChatsController.index)
 
 router.get('/avatars/:src', ImagesController.index)
 router.get('/:username', ensureAuthenticated, ProfileController.index)
 
 
-
+// TODO test 404
 router.get('*', (request, response) => response.redirect('/'))
 
 export default router

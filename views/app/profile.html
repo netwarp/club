@@ -3,14 +3,14 @@
 {% block content %}
 <div class="container items-center px-5 py-5">
     <div class="flex flex-wrap">
-        <div class="bg-white border rounded-lg shadow-xl w-3/4 text-center">
+        <div class="bg-white border rounded-lg shadow-xl min-vh-100 text-center">
             <div class="p-6">
                 <div class="text-center">
                     <img src="/avatars/{{ user.avatar }}" alt="" class="mx-auto">
                 </div>
                 <h4 class="mb-8 text-2xl font-semibold leading-none tracking-tighter text-black lg:text-3xl title-font ">{{ user.username }}</h4>
-                <p class="mb-3 text-base leading-relaxed text-blueGray-500"> If any Environment Variables values are changed between Deployments, deduplication will always be bypassed. </p>
-                <p></p>
+                <p class="mb-3 text-base leading-relaxed text-blueGray-500">{{ user.bio or 'lorem ipsum ...' }}</p>
+
                 <div class="flex flex-wrap justify-between">
                     <a href="#" class="text-sm font-semibold text-blue-600 uppercase hover:text-black" title="read more"> Message </a>
                     <a href="#" class="mx-4 ml-auto text-red-600 hover:text-black" title="like">

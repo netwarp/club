@@ -1,17 +1,19 @@
 {% extends "layouts/app.html" %}
 
 {% block content %}
-    <div class="container p-5">
+    <div class="container p-5 flex">
         {% for user in users %}
-            <div class="bg-white w-64">
+            <div class="bg-white w-64 m-4">
                 <div>
                     <a href="/{{ user.username }}">
-                        <img src="https://picsum.photos/400/300" alt="">
+                        <img src="/avatars/{{user.avatar}}" alt="">
                     </a>
                 </div>
                 <div class="p-3">
                     <div>
-                        {{ user.username }}
+                        <a href="/{{ user.username }}">
+                            {{ user.username }}
+                        </a>
                     </div>
                 </div>
             </div>
