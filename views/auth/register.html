@@ -1,11 +1,10 @@
 {% extends "layouts/app.html" %}
 
 {% block content_bis %}
-<section class="text-gray-600 body-font relative">
+<section class="text-gray-600 body-font">
+    <div class="container px-5 py-12 mx-auto flex flex-wrap items-center">
 
-    <div class="container px-5 py-6 mx-auto flex sm:flex-nowrap flex-wrap">
-
-        <form action="#" method="post" class=" bg-gray-100 flex flex-col w-full md:py-8 mt-8 md:mt-0 p-5">
+        <form action="#" method="post" class="lg:w-2/6 md:w-1/2 bg-gray-100 rounded-lg p-8 flex flex-col mx-auto w-full mt-10 md:mt-0">
             {% if errors %}
                 {% for error in errors %}
                     <div class="border border-red-500 mt-3 p-3 bg-red-100">

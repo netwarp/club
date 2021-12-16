@@ -1,1 +1,21 @@
-<?xml version="1.0" encoding="UTF-8" standalone="no"?><!-- Generator: Gravit.io --><svg xmlns="http://www.w3.org/2000/svg" xmlns:xlink="http://www.w3.org/1999/xlink" style="isolation:isolate" viewBox="0 0 150 25" width="150pt" height="25pt"><defs><clipPath id="_clipPath_9QhT6DWIcejWxQTrvTyVD2a2OQyHanYP"><rect width="150" height="25"/></clipPath></defs><g clip-path="url(#_clipPath_9QhT6DWIcejWxQTrvTyVD2a2OQyHanYP)"><g clip-path="url(#_clipPath_hoMSsmj29FcHHZr6Wf79SZ2HZdF2CqtM)"><text transform="matrix(1,0,0,1,0,14.964)" style="font-family:'Open Sans';font-weight:700;font-size:14px;font-style:normal;fill:#000000;stroke:none;">rencontre-sante</text><text transform="matrix(1,0,0,1,113.073,14.964)" style="font-family:'Open Sans';font-weight:400;font-size:14px;font-style:normal;fill:#000000;stroke:none;">.club</text></g><defs><clipPath id="_clipPath_hoMSsmj29FcHHZr6Wf79SZ2HZdF2CqtM"><rect x="0" y="0" width="150" height="25" transform="matrix(1,0,0,1,0,0)"/></clipPath></defs></g></svg>
+<?xml version="1.0" encoding="UTF-8" standalone="no"?><!-- Generator: Gravit.io -->
+<svg xmlns="http://www.w3.org/2000/svg" xmlns:xlink="http://www.w3.org/1999/xlink" style="isolation:isolate" viewBox="0 0 150 25" width="150pt" height="25pt">
+
+    <style>
+        @import url('https://fonts.googleapis.com/css2?family=Noto+Sans');
+
+        .txt {
+            font-family: 'Noto Sans', sans-serif;
+        }
+    </style>
+
+    <defs>
+        <clipPath id="_clipPath_9QhT6DWIcejWxQTrvTyVD2a2OQyHanYP">
+            <rect width="150" height="25"/>
+        </clipPath>
+    </defs>
+    <g clip-path="url(#_clipPath_9QhT6DWIcejWxQTrvTyVD2a2OQyHanYP)"><g clip-path="url(#_clipPath_hoMSsmj29FcHHZr6Wf79SZ2HZdF2CqtM)">
+        <text class="txt" transform="matrix(1,0,0,1,0,14.964)" style="font-family:'Open Sans';font-weight:700;font-size:14px;font-style:normal;fill:#000000;stroke:none;">rencontre-sante</text>
+        <text class="txt" transform="matrix(1,0,0,1,113.073,14.964)" style="font-family:'Open Sans';font-weight:400;font-size:14px;font-style:normal;fill:#000000;stroke:none;">.club</text>
+    </g><defs><clipPath id="_clipPath_hoMSsmj29FcHHZr6Wf79SZ2HZdF2CqtM"><rect x="0" y="0" width="150" height="25" transform="matrix(1,0,0,1,0,0)"/>
+    </clipPath></defs></g></svg>
