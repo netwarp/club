@@ -47,6 +47,8 @@ router.post('/register', RegisterController.postRegister)
 router.get('/confirm/:id/:confirm_token', ConfirmController.index)
 
 router.get('/login', LoginController.index)
+
+
 router.post('/login',
     passport.authenticate('local', { successRedirect: '/',
         failureRedirect: '/login',
@@ -80,9 +82,10 @@ router.get('/chat', ensureAuthenticated, ChatsController.index)
 
 router.get('/avatars/:src', ImagesController.index)
 router.get('/:username', ensureAuthenticated, ProfileController.index)
+router.post('/:username', ensureAuthenticated, ProfileController.post)
 
 
 // TODO test 404
-router.get('*', (request, response) => response.redirect('/'))
+
 
 export default router
