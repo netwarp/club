@@ -27,9 +27,7 @@ const redisClient = redis.createClient({
     port: 6379
 })
 
-redisClient.on('connect', function (err) {
-    console.log('Connected to redis successfully');
-});
+redisClient.on('connect', () => true);
 
 import LocalStrategy from './middleware/LocalStrategy.mjs'
 passport.use(LocalStrategy)
@@ -79,5 +77,7 @@ import router from './routes/web.mjs'
 import router_api from './routes/api.mjs'
 app.use('/', router)
 app.use('/api', router_api)
+
+app.get('*', (request, response) => response.redirect('/'))
 
 app.listen(process.env.APP_PORT)
