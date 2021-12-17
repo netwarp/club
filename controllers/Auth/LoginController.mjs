@@ -5,7 +5,7 @@ const LoginController = {
     async index(request, response) {
 
         const data = {
-            error: request.session.flash?.error.at(-1)
+            error: request.session.flash?.error?.at(-1)
         }
 
         return response.render('auth/login.html', data)

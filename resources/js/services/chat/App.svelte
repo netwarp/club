@@ -1,46 +1,24 @@
 <script>
+    import axios from 'axios'
 
-    let text = ''
+    import Preview from './components/Preview.svelte'
 
-    let messages = []
-    messages = [
-        {
-            from: 'me',
-            text: 'lorem ipsum'
-        },
-        {
-            from: 'you',
-            text: 'aaa aaa aaa'
-        }
-    ]
+    let chats = []
+    let error = null
 
+    async function fetch() {
+        const url = '/api/chats'
+        const response = await axios.get(url)
+        const data = response.data
 
-    async function handleForm(event) {
-
-        if ( ! text) return
-
-        const message = {
-            from: 'me',
-            text
-        }
-
-        messages = [...messages, message]
-
-        text = ''
+        chats = data
+        console.log(chats)
     }
+    fetch()
 </script>
 
-<div class="border border-gray-200 bg-white p-2 rounded-lg mb-4">
-    <div class="chat-space flex-col">
-
-        {#each messages as message}
-            <div class="message {message.from === 'me' ? 'bg-blue-100 text-right' : 'bg-red-100'} p-2 mb-3 rounded-lg">
-                {message.text}
-            </div>
-        {/each}
-    </div>
-
-    <form on:submit|preventDefault={handleForm}>
-        <input type="text" class="border-2 border-gray-400 w-full p-1" bind:value={text}>
-    </form>
+<div class="container">
+    {#each chats as chat}
+        <Preview user_id_1="{chat.user_id_1}" user_id_2="{chat.user_id_2}" />
+    {/each}
 </div>
