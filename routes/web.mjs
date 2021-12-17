@@ -11,6 +11,7 @@ import multer from 'multer'
 import passport from "passport";
 import NotificationsController from "../controllers/App/NotificationsController.mjs";
 import ensureAuthenticated from "../middleware/ensureAuthenticated.mjs";
+import ensureNotAuthenticated from "../middleware/ensureNotAuthenticated.mjs";
 import ProfileController from "../controllers/App/ProfileController.mjs";
 import AccountController from "../controllers/App/AccountController.mjs";
 import ImagesController from '../controllers/App/ImagesController.mjs'
@@ -41,25 +42,20 @@ const upload = multer({ storage: storage })
 
 router.get('/', FrontController.index)
 
-router.get('/register', RegisterController.index)
-router.post('/register', RegisterController.postRegister)
+router.get('/register', ensureNotAuthenticated, RegisterController.index)
+router.post('/register', ensureNotAuthenticated, RegisterController.postRegister)
 
-router.get('/confirm/:id/:confirm_token', ConfirmController.index)
+router.get('/confirm/:id/:confirm_token', ensureNotAuthenticated, ConfirmController.index)
 
-router.get('/login', LoginController.index)
+router.get('/login', ensureNotAuthenticated, LoginController.index)
 
 
-router.post('/login',
+router.post('/login', ensureNotAuthenticated,
     passport.authenticate('local', { successRedirect: '/',
         failureRedirect: '/login',
         failureFlash: true // TODO flash one time
     })
 )
-
-router.get('/logout', (request, response) => {
-    request.logout()
-    response.redirect('/')
-})
 
 router.get('/forgot-password', ForgotPasswordController.index)
 router.post('/forgot-password', ForgotPasswordController.post)
