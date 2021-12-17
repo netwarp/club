@@ -69,6 +69,7 @@ router.get('/logout', (request, response) => {
 })
 
 // TODO router app
+/*
 router.get('/notifications', ensureAuthenticated, NotificationsController.index)
 
 router.get('/compte', ensureAuthenticated, AccountController.index)
@@ -79,6 +80,8 @@ router.get('/chat', ensureAuthenticated, ChatsController.index)
 router.get('/avatars/:src', ImagesController.index)
 router.get('/:username', ensureAuthenticated, ProfileController.index)
 router.post('/:username', ensureAuthenticated, ProfileController.post)
+
+ */
 
 
 // TODO test 404

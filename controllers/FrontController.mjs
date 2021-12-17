@@ -27,15 +27,18 @@ const FrontController = {
             data.auth.hasOwnProperty('password') &&
             data.auth.hasOwnProperty('createdAt')
         ) {
+            /*
             const user_id = request.user.id
             console.log(`user id : ${user_id}`)
 
             let users = await sequelize.query(`SELECT id, username, email, avatar, sex, bio FROM users WHERE ID <> ${user_id};`, { type: QueryTypes.SELECT });
             users = users[0]
+            
+             */
 
 
             const data = {
-                users,
+                //users,
                 auth: request.user
             }
 
